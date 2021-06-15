@@ -3,14 +3,11 @@ import 'constants.dart';
 import 'item.dart';
 
 class ItemRow extends StatelessWidget {
-  // final String itemName;
-  // final String itemPrice;
-  // final ImageProvider itemImage;
+  final String itemCategory;
+  final List<Item> itemList;
 
-  // ItemRow(
-  //     {required this.itemName,
-  //     required this.itemPrice,
-  //     required this.itemImage});
+  ItemRow({required this.itemCategory, required this.itemList});
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -26,7 +23,7 @@ class ItemRow extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Fresh Fruits',
+                      itemCategory,
                       style: kLabelTextStyle,
                     ),
                     ElevatedButton(
@@ -42,48 +39,9 @@ class ItemRow extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Item(
-                      itemName: 'Sweet_corn.png',
-                      itemPrice: '1000 Ks',
-                      itemImage: AssetImage('images/sweet_corn.png'),
-                    ),
-                    Item(
-                      itemName: 'Apple',
-                      itemPrice: '1500 Ks',
-                      itemImage: AssetImage('images/banana.png'),
-                    ),
-                    Item(
-                      itemName: 'Carrot',
-                      itemPrice: '700 Ks',
-                      itemImage: AssetImage('images/carrot.png'),
-                    ),
-                  ],
+                  children: itemList,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Item(
-                      itemName: 'Milo',
-                      itemPrice: '2000 Ks',
-                      itemImage: AssetImage('images/milo.jpg'),
-                    ),
-                    Item(
-                      itemName: 'Nescafe',
-                      itemPrice: '2500 Ks',
-                      itemImage: AssetImage('images/nescafe.jpg'),
-                    ),
-                    Item(
-                      itemName: 'Lactasoy',
-                      itemPrice: '1800 Ks',
-                      itemImage: AssetImage('images/lactasoy.png'),
-                    )
-                  ],
-                ),
-              )
             ],
           ),
         )),
