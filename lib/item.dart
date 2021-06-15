@@ -1,3 +1,4 @@
+import 'package:clone_zay_chin/item_detail.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 
@@ -15,9 +16,15 @@ class Item extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CircleAvatar(
-          backgroundImage: itemImage,
-          radius: 40.0,
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => ItemDetail()));
+          },
+          child: CircleAvatar(
+            backgroundImage: itemImage,
+            radius: 40.0,
+          ),
         ),
         SizedBox(
           height: 10.0,
