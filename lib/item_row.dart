@@ -14,7 +14,7 @@ class ItemRow extends StatelessWidget {
       children: [
         Expanded(
             child: Container(
-          color: Color(0xFFEFEFD0),
+          color: Color(0xFFFFFFFF),
           child: Column(
             children: [
               Padding(
@@ -28,6 +28,14 @@ class ItemRow extends StatelessWidget {
                     ),
                     ElevatedButton(
                         onPressed: () {},
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(Color(0xFFD9DFE2)),
+                            shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                    // side: BorderSide(color: Colors.red),
+                                    borderRadius:
+                                        BorderRadius.circular(18.0)))),
                         child: Text(
                           'View All',
                           style: kAddToCartTextStyle,
@@ -35,11 +43,14 @@ class ItemRow extends StatelessWidget {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: itemList,
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: itemList,
+                  ),
                 ),
               ),
             ],

@@ -22,7 +22,7 @@ class ItemDetail extends StatelessWidget {
             Expanded(
               flex: 2,
               child: Container(
-                color: Color(0xFFEFEFD0),
+                color: Color(0xFFFFFFFF),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -64,7 +64,7 @@ class ItemDetail extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                color: Color(0xFFEFEFD0),
+                color: Color(0xFFFFFFFF),
                 child: Row(
                   children: [Text('Related Products')],
                 ),
