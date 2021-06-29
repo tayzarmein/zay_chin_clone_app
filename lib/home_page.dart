@@ -1,4 +1,4 @@
-import 'package:clone_zay_chin/categorie.dart';
+import 'package:clone_zay_chin/categories.dart';
 import 'package:clone_zay_chin/item.dart';
 import 'package:flutter/material.dart';
 import 'item_row.dart';

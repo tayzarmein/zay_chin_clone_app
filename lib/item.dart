@@ -40,16 +40,19 @@ class Item extends StatelessWidget {
           itemPrice,
           style: kPriceTextStyle,
         ),
-        ElevatedButton(
-            onPressed: () {},
-            style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Color(0xFFD9DFE2)),
-                shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0)))),
-            child: Text(
-              'Add to Cart',
-              style: kAddToCartTextStyle,
-            ))
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ElevatedButton(
+              onPressed: () {},
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Color(0xFFD9DFE2)),
+                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0)))),
+              child: Text(
+                'Add to Cart',
+                style: kAddToCartTextStyle,
+              )),
+        )
       ],
     );
   }
