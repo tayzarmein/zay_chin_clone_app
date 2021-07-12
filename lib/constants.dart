@@ -7,3 +7,6 @@ const kPriceTextStyle = TextStyle(
 const kAddToCartTextStyle = TextStyle(fontSize: 10.0, color: Color(0xFF1D1E66));
 const kItemDetailTextStyle = TextStyle(
     fontSize: 30.0, color: Color(0xFF1D1E66), fontWeight: FontWeight.bold);
+
+const kSubCategoryTextStyle = TextStyle(
+    fontSize: 25.0, color: Color(0xFF6C757D), fontWeight: FontWeight.bold);

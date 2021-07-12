@@ -3,13 +3,14 @@
 var data = {
   "data": [
     {
-      "Meat & Seafood": [
+      "categoryName": "Meat & Seafood",
+      "meatData": [
         "Frog",
         "Chicken",
         "Fish",
         "Seafood",
         "Mutton",
-        "Port",
+        "Pork",
         "Beef",
         "Duck",
         "Bacon, Ham, Sausages & Meatball",
@@ -17,7 +18,8 @@ var data = {
       ],
     },
     {
-      "Fruits & Vegetables": [
+      "categoryName": "Fruits & Vegetables",
+      "fruitsData": [
         "Bean, Corn & More",
         "Broccoli, Cauliflower & Cabbage",
         "Buds & Shoots",
@@ -26,7 +28,8 @@ var data = {
       ],
     },
     {
-      "Grocery & Dry Goods": [
+      "categoryName": "Grocery & Dry Goods",
+      "groceryData": [
         "Baking & Dessert Items",
         "Cooking Oil",
         "Creamers & Condensed Milk",
@@ -40,7 +43,8 @@ var data = {
       ],
     },
     {
-      "Breakfast & Dairy": [
+      "categoryName": "Breakfast & Dairy",
+      "breakfastData": [
         "Bread",
         "Butter & Margerine",
         "Cereals & Cornflakes",
@@ -55,7 +59,8 @@ var data = {
       ],
     },
     {
-      "Beverages & Snacks": [
+      "categoryName": "Beverages & Snacks",
+      "beveragesData": [
         "Biscuits & Cakes",
         "Chips & Crackers",
         "Candy & Jelly",
@@ -69,4 +74,64 @@ var data = {
       ],
     }
   ]
+};
+
+var itemByCategory = {
+  "data": [
+    {
+      "name": "Chicken",
+      "chickenData": [
+        {
+          "name": "Chicken Leg",
+          "price": "1000 Ks",
+          "image": "images/chicken_leg.jpg"
+        },
+        {
+          "name": "Chicken Drumstick",
+          "price": "1000 Ks",
+          "image": "images/chicken_drumstick.jpg"
+        },
+        {
+          "name": "CP Chicken",
+          "price": "4000 Ks",
+          "image": "images/cp_whole_chicken.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Pork",
+      "porkData": [
+        {
+          "name": "Pork Belly Slice",
+          "price": "2000 Ks",
+          "image": "images/pork_belly_slice.jpg"
+        },
+        {
+          "name": "Pork Ears",
+          "price": "2500 Ks",
+          "image": "images/pork_ears.jpg"
+        },
+        {
+          "name": "Prok Leg",
+          "price": "2000 Ks",
+          "image": "images/pork_leg.jpg"
+        },
+        {
+          "name": "Pork loin",
+          "price": "3000 Ks",
+          "image": "images/pork_loin.jpg"
+        },
+        {
+          "name": "Pork Rib",
+          "price": "2000 Ks",
+          "image": "images/pork_rib.jpg"
+        },
+        {
+          "name": "Pork Thigh",
+          "price": "4000 Ks",
+          "image": "images/pork_thigh.jpg"
+        }
+      ]
+    }
+  ],
 };

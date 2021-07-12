@@ -26,9 +26,9 @@ class ItemDetail extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    CircleAvatar(
-                      backgroundImage: AssetImage('images/apple.png'),
-                      radius: 100.0,
+                    Image.asset(
+                      'images/apple.png',
+                      scale: 2.0,
                     ),
                     Row(
                       children: [
