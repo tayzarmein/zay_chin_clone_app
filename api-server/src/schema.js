@@ -10,7 +10,7 @@ const typeDefs = gql`
       id: ID!
       name: String!
       price: Int!
-      image: String!
+      photo: String!
       category: Category!
       subCategory: SubCategory!
   }

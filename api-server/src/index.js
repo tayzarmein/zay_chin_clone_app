@@ -1,22 +1,10 @@
 const { ApolloServer } = require("apollo-server");
 const typeDefs = require("./schema");
+require("dotenv").config();
 const resolvers = require("./resolvers");
 const Products = require("./datasources/productApi");
 
-require("dotenv").config();
-
-const { MongoClient } = require("mongodb");
-
-async function getDb() {
-  const client = new MongoClient(
-    `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}`
-  );
-  await client.connect();
-  const db = client.db(process.env.DB_NAME);
-
-  console.log("db connected");
-  return db;
-}
+const {getDb} = require("./database");
 
 getDb().then((db) => {
   const server = new ApolloServer({

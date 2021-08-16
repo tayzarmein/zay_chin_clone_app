@@ -1,7 +1,8 @@
 const resolvers = {
     Query: {
-        products: (parent, args, context, info) => {
-            //connect to mongo
+        products: async (parent, args, context, info) => {
+            const products = await context.dataSources.products.getAllProducts();
+            return products;
         }
         
     }
