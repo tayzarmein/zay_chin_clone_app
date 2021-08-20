@@ -7,22 +7,14 @@ const typeDefs = gql`
   }
 
   type Product {
-      id: ID!
+      _id: ID!
       name: String!
+      description: String
+      priceUnit: String
       price: Int!
-      photo: String!
-      category: Category!
-      subCategory: SubCategory!
-  }
-
-  type Category {
-      id: ID!
-      name: String!
-  }
-
-  type SubCategory {
-      id: ID!
-      name: String!
+      image: String!
+      category: String!
+      subcategory: String!
   }
 
 `;

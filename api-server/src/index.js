@@ -2,7 +2,7 @@ const { ApolloServer } = require("apollo-server");
 const typeDefs = require("./schema");
 require("dotenv").config();
 const resolvers = require("./resolvers");
-const Products = require("./datasources/productApi");
+const Products = require("./datasources/products");
 
 const {getDb} = require("./database");
 

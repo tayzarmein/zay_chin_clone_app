@@ -7,14 +7,14 @@ class Products extends MongoDataSource {
         const products = await this.collection.find().toArray();
 
         //transformation
-        const newProducts = products.map((p) => {
-            p.id = p._id
-            delete p._id;
-            return p;
-        })
+        // const newProducts = products.map((p) => {
+        //     p.id = p._id
+        //     delete p._id;
+        //     return p;
+        // })
 
-        console.log("products=", newProducts);
-        return newProducts;
+        // console.log("products=", newProducts);
+        return products;
         
     }
 }

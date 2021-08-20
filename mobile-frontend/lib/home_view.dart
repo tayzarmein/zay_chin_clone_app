@@ -15,13 +15,14 @@ class _HomeViewState extends State<HomeView> {
   final getCategoriesQuery = """
   query Query {
   products {
-    id
+    _id
     name
+    description
     price
-    photo
-    category {
-      name
-    }
+    priceUnit
+    image
+    category
+    subcategory
   }
 }
   """;
@@ -41,9 +42,21 @@ class _HomeViewState extends State<HomeView> {
     return Query(
         options: QueryOptions(document: gql(getCategoriesQuery)),
         builder: (QueryResult result, {refetch, fetchMore}) {
-          print(result);
           //todo: add UI
-          return Text('aa');
+
+          //Show Loading UI when loading
+          if (result.isLoading) {
+            return Text('Loading');
+          }
+
+          //Show actual data when success
+          if (result.source != null) {
+            print(result.data?["products"]);
+            return Text('Success');
+          }
+
+          //this code should not be reached
+          return Text('unexpected');
         });
   }
 }
