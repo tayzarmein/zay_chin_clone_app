@@ -17,6 +17,16 @@ class Products extends MongoDataSource {
         return products;
         
     }
+    async getCategoryNames() {
+        const categories = await this.collection.distinct('category');
+
+        return categories;
+    }
+    async findProductsByCategory(category) {
+        const products = await this.collection.find({category: category.name}).toArray();
+        console.log("productsxxxx=", products);
+        return products;
+    }
 }
 
 module.exports = Products

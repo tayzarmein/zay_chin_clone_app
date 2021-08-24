@@ -4,6 +4,7 @@ const typeDefs = gql`
 
   type Query {
     products: [Product!]
+    categories: [Category]
   }
 
   type Product {
@@ -15,6 +16,11 @@ const typeDefs = gql`
       image: String!
       category: String!
       subcategory: String!
+  }
+
+  type Category {
+    name: String!
+    products: [Product]
   }
 
 `;
