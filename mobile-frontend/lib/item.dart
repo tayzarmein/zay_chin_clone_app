@@ -4,7 +4,7 @@ import 'constants.dart';
 
 class Item extends StatelessWidget {
   final String productName;
-  final String productPrice;
+  final int productPrice;
   final Image productImage;
 
   Item(
@@ -38,7 +38,7 @@ class Item extends StatelessWidget {
             height: 10.0,
           ),
           Text(
-            productPrice,
+            productPrice.toString(),
             style: kPriceTextStyle,
           ),
           Padding(

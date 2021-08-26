@@ -1,46 +1,101 @@
+import 'package:clone_zay_chin/data_models/category.dart';
+import 'package:clone_zay_chin/data_models/product.dart';
 import 'package:clone_zay_chin/sub_categories.dart';
 import 'package:flutter/material.dart';
-import 'data_store.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
-class CategoryView extends StatelessWidget {
+// import 'data_store.dart';
+
+class CategoryView extends StatefulWidget {
   const CategoryView({
     Key? key,
   }) : super(key: key);
 
   @override
+  _CategoryViewState createState() => _CategoryViewState();
+}
+
+class _CategoryViewState extends State<CategoryView> {
+  final getCategoriesQuery = """
+  query Query {
+  categories {
+    name
+    products {
+      _id
+      name
+      description
+      priceUnit
+      price
+      image
+      category
+      subcategory
+    }
+  }
+}
+  """;
+
+  @override
   Widget build(BuildContext context) {
-    DataStore store = DataStore();
+    return Query(
+        options: QueryOptions(document: gql(getCategoriesQuery)),
+        builder: (QueryResult result, {refetch, fetchMore}) {
+          List resultList = result.data?["categories"];
 
-    List<Widget> expansionTiles = [];
+          List<Category> listOfCategory = resultList
+              .map((eachCategory) => Category.fromJson(eachCategory))
+              .toList();
 
-    var categories = store.getCategories();
+          List<Widget> expansionTiles = [];
 
-    categories.forEach((category) {
-      List<SubCategory> subCategories =
-          store.getSubCategoriesFromCategory(category);
+          listOfCategory.forEach((category) {
+            List<Product> listOfProducts = category.products;
+            List<Widget> listTiles = listOfProducts
+                .map((product) => ListTile(
+                      subtitle: Text(product.subcategory),
+                    ))
+                .toList();
 
-      List<Widget> listTiles = subCategories
-          .map((subcategory) => ListTile(
-                subtitle: Text(subcategory.name),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SubCategoryPage(store
-                              .getProductsFromSubcategory(subcategory.name))));
-                },
-              ))
-          .toList();
+            expansionTiles.add(
+                ExpansionTile(title: Text(category.name), children: listTiles));
+          });
+          return Scaffold(
+            body: ListView(
+              children: expansionTiles,
+            ),
+          );
+        });
+    // DataStore store = DataStore();
 
-      expansionTiles.add(ExpansionTile(
-        title: Text(category.name),
-        children: listTiles,
-      ));
-    });
+    // List<Widget> expansionTiles = [];
 
-    return Scaffold(
-        body: ListView(
-      children: expansionTiles,
-    ));
+    // // var categories = store.getCategories();
+
+    // categories.forEach((category) {
+    //   List<SubCategory> subCategories =
+    //       store.getSubCategoriesFromCategory(category);
+
+    //   List<Widget> listTiles = subCategories
+    //       .map((subcategory) => ListTile(
+    //             subtitle: Text(subcategory.name),
+    //             onTap: () {
+    //               Navigator.push(
+    //                   context,
+    //                   MaterialPageRoute(
+    //                       builder: (context) => SubCategoryPage(store
+    //                           .getProductsFromSubcategory(subcategory.name))));
+    //             },
+    //           ))
+    //       .toList();
+
+    //   expansionTiles.add(ExpansionTile(
+    //     title: Text(category.name),
+    //     children: listTiles,
+    //   ));
+    // });
+
+    // return Scaffold(
+    //     body: ListView(
+    //   children: expansionTiles,
+    // ));
   }
 }

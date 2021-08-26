@@ -1,4 +1,5 @@
-import 'package:clone_zay_chin/data_store.dart';
+// import 'package:clone_zay_chin/data_store.dart';
+import 'package:clone_zay_chin/data_models/category.dart';
 import 'package:clone_zay_chin/item_row.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -11,18 +12,21 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  DataStore store = DataStore();
+  // DataStore store = DataStore();
   final getCategoriesQuery = """
   query Query {
-  products {
-    _id
+  categories {
     name
-    description
-    price
-    priceUnit
-    image
-    category
-    subcategory
+    products {
+      _id
+      name
+      description
+      priceUnit
+      price
+      image
+      category
+      subcategory
+    }
   }
 }
   """;
@@ -51,8 +55,23 @@ class _HomeViewState extends State<HomeView> {
 
           //Show actual data when success
           if (result.source != null) {
-            print(result.data?["products"]);
-            return Text('Success');
+            // print(result.data?["categories"]);
+
+            List resultList = result.data?["categories"];
+
+            List<Category> listOfCategories = resultList
+                .map((eachCategory) => Category.fromJson(eachCategory))
+                .toList();
+
+            List<Widget> listOfItemRows = [];
+            listOfCategories.forEach((element) {
+              listOfItemRows.add(ItemRow(
+                  categoryName: element.name, products: element.products));
+            });
+
+            return Scaffold(
+              body: ListView(children: listOfItemRows),
+            );
           }
 
           //this code should not be reached

@@ -1,4 +1,5 @@
-import 'package:clone_zay_chin/data_store.dart';
+// import 'package:clone_zay_chin/data_store.dart';
+import 'package:clone_zay_chin/data_models/product.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'item.dart';

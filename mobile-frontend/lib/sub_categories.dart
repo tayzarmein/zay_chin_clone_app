@@ -1,7 +1,8 @@
 import 'package:clone_zay_chin/constants.dart';
+import 'package:clone_zay_chin/data_models/product.dart';
 import 'package:clone_zay_chin/item.dart';
 import 'package:flutter/material.dart';
-import 'data_store.dart';
+// import 'data_store.dart';
 
 class SubCategoryPage extends StatefulWidget {
   final List<Product> products;
