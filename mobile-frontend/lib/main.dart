@@ -1,4 +1,4 @@
-import 'package:clone_zay_chin/home_page.dart';
+import 'package:clone_zay_chin/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';

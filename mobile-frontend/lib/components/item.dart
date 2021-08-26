@@ -1,6 +1,6 @@
-import 'package:clone_zay_chin/item_detail.dart';
+import 'package:clone_zay_chin/components/item_detail.dart';
 import 'package:flutter/material.dart';
-import 'constants.dart';
+import '../constants.dart';
 
 class Item extends StatelessWidget {
   final String productName;

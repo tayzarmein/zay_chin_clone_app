@@ -1,5 +1,5 @@
-import 'package:clone_zay_chin/category_view.dart';
-import 'package:clone_zay_chin/home_view.dart';
+import 'package:clone_zay_chin/components/category_view.dart';
+import 'package:clone_zay_chin/components/home_view.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,12 +9,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
-
-  // DataStore store = DataStore();
-  //todo add some data
-
-  //initstate
-  //setstate(store);
 
   List<Widget> widgetOptions = [HomeView(), CategoryView(), Text('Menu')];
 
