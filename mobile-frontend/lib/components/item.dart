@@ -5,7 +5,7 @@ import '../constants.dart';
 class Item extends StatelessWidget {
   final String productName;
   final int productPrice;
-  final Image productImage;
+  final String productImage;
 
   Item(
       {required this.productName,
@@ -19,11 +19,17 @@ class Item extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ItemDetail()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ItemDetail(
+                            productName: productName,
+                            productImage: productImage,
+                            productPrice: productPrice,
+                          )));
             },
             child: CircleAvatar(
-              backgroundImage: productImage.image,
+              backgroundImage: Image.network(productImage).image,
               radius: 40.0,
             ),
           ),

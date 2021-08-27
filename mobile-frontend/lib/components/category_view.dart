@@ -52,6 +52,10 @@ class CategoriesUI extends StatelessWidget {
       List<Widget> listTiles = listOfProducts
           .map((product) => ListTile(
                 subtitle: Text(product.subcategory),
+                onTap: () {
+                  // new widget
+                  // categories,
+                },
               ))
           .toList();
 

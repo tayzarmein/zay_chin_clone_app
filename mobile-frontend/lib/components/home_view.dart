@@ -46,7 +46,7 @@ class HomeView extends StatelessWidget {
                 .map((eachCategory) => Category.fromJson(eachCategory))
                 .toList();
 
-            ProductsFeed(
+            return ProductsFeed(
               categories: categories,
             );
           }

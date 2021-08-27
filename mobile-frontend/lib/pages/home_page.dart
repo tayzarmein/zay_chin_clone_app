@@ -1,6 +1,7 @@
 import 'package:clone_zay_chin/components/category_view.dart';
 import 'package:clone_zay_chin/components/home_view.dart';
 import 'package:flutter/material.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -22,7 +23,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Zay Chin'),
+          title: Text('Zay Wal'),
           actions: [
             IconButton(
                 onPressed: () {
