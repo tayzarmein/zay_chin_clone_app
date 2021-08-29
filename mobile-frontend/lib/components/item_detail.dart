@@ -18,89 +18,55 @@ class ItemDetail extends StatefulWidget {
 }
 
 class _ItemDetailState extends State<ItemDetail> {
-  int clickAddToCardButton = 0;
-  int selectedItemCount = 0;
+  int chosenQty = 0;
+
+  Widget _buildAddToCart() {
+    if (chosenQty == 0) {
+      return ElevatedButton(
+          onPressed: () {
+            setState(() {
+              chosenQty++;
+            });
+          },
+          child: Text('Add to cart'));
+    } else {
+      return Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    chosenQty--;
+                  });
+                },
+                icon: Icon(chosenQty == 1 ? Icons.delete : Icons.remove),
+                iconSize: 15,
+              ),
+              Text('$chosenQty'),
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    chosenQty++;
+                  });
+                },
+                icon: Icon(Icons.add),
+                iconSize: 15,
+              )
+            ],
+          ));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    Widget addToCart(int itemCount) {
-      if (itemCount == 0) {
-        return ElevatedButton(
-            onPressed: () {
-              setState(() {
-                clickAddToCardButton++;
-                selectedItemCount++;
-              });
-            },
-            child: Text('Add to cart'));
-      } else if (itemCount == 1) {
-        return Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      selectedItemCount--;
-                    });
-                  },
-                  icon: Icon(Icons.delete),
-                  iconSize: 15,
-                ),
-                Text('$selectedItemCount'),
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      selectedItemCount++;
-                    });
-                  },
-                  icon: Icon(Icons.add),
-                  iconSize: 15,
-                )
-              ],
-            ));
-      } else if (itemCount > 1) {
-        return Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      selectedItemCount--;
-                    });
-                  },
-                  icon: Icon(Icons.remove),
-                  iconSize: 15,
-                ),
-                Text('$selectedItemCount'),
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      selectedItemCount++;
-                    });
-                  },
-                  icon: Icon(Icons.add),
-                  iconSize: 15,
-                )
-              ],
-            ));
-      }
-      return Container();
-    }
-
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.productName),
           actions: [
             IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart)),
           ],
-        ),
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: addToCart(selectedItemCount),
         ),
         body: Column(
           children: [
@@ -163,6 +129,10 @@ class _ItemDetailState extends State<ItemDetail> {
                   children: [Text('Related Products')],
                 ),
               ),
+            ),
+            _buildAddToCart(),
+            SizedBox(
+              height: 20,
             )
           ],
         ));
