@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:clone_zay_chin/constants.dart';
 import 'package:flutter/material.dart';
 
-class ItemDetail extends StatelessWidget {
+class ItemDetail extends StatefulWidget {
   final String productName;
   final int productPrice;
   final String productImage;
@@ -14,21 +14,93 @@ class ItemDetail extends StatelessWidget {
       required this.productPrice});
 
   @override
+  _ItemDetailState createState() => _ItemDetailState();
+}
+
+class _ItemDetailState extends State<ItemDetail> {
+  int clickAddToCardButton = 0;
+  int selectedItemCount = 0;
+
+  @override
   Widget build(BuildContext context) {
-    // Image changeImageSize = Image(
-    //     image: ResizeImage(Image.network(productImage).image,
-    //         width: 500, height: 500));
+    Widget addToCart(int itemCount) {
+      if (itemCount == 0) {
+        return ElevatedButton(
+            onPressed: () {
+              setState(() {
+                clickAddToCardButton++;
+                selectedItemCount++;
+              });
+            },
+            child: Text('Add to cart'));
+      } else if (itemCount == 1) {
+        return Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      selectedItemCount--;
+                    });
+                  },
+                  icon: Icon(Icons.delete),
+                  iconSize: 15,
+                ),
+                Text('$selectedItemCount'),
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      selectedItemCount++;
+                    });
+                  },
+                  icon: Icon(Icons.add),
+                  iconSize: 15,
+                )
+              ],
+            ));
+      } else if (itemCount > 1) {
+        return Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      selectedItemCount--;
+                    });
+                  },
+                  icon: Icon(Icons.remove),
+                  iconSize: 15,
+                ),
+                Text('$selectedItemCount'),
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      selectedItemCount++;
+                    });
+                  },
+                  icon: Icon(Icons.add),
+                  iconSize: 15,
+                )
+              ],
+            ));
+      }
+      return Container();
+    }
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('Zay Wal'),
+          title: Text(widget.productName),
           actions: [
             IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart)),
           ],
         ),
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.all(15.0),
-          child: ElevatedButton(onPressed: () {}, child: Text('Add to cart')),
+          child: addToCart(selectedItemCount),
         ),
         body: Column(
           children: [
@@ -41,7 +113,7 @@ class ItemDetail extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Image.network(
-                        productImage,
+                        widget.productImage,
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -56,7 +128,7 @@ class ItemDetail extends StatelessWidget {
                           padding: const EdgeInsets.all(15.0),
                           child: Text(
                             // 'Apple Fuji (Thai) 1pcs',
-                            productName,
+                            widget.productName,
                             style: kItemDetailTextStyle,
                           ),
                         ),
@@ -71,7 +143,7 @@ class ItemDetail extends StatelessWidget {
                           padding: const EdgeInsets.all(15.0),
                           child: Text(
                             // '1000 Ks',
-                            productPrice.toString(),
+                            widget.productPrice.toString(),
                             style: kPriceTextStyle,
                           ),
                         )

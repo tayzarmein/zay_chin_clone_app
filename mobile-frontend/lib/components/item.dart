@@ -16,6 +16,8 @@ class Item extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Column(
+        // textBaseline: TextBaseline.alphabetic,
+
         children: [
           GestureDetector(
             onTap: () {
@@ -39,6 +41,10 @@ class Item extends StatelessWidget {
           Text(
             productName,
             style: kLabelTextStyle,
+            // maxLines: 2,
+            // textDirection: TextDirection.ltr,
+            // overflow: TextOverflow.ellipsis,
+            // textAlign: TextAlign.justify,
           ),
           SizedBox(
             height: 10.0,

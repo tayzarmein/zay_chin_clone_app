@@ -52,7 +52,8 @@ class ItemRow extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      // mainAxisAlignment: MainAxisAlignment.center,
+
                       children: products
                           .map((product) => Item(
                               productName: product.name,
