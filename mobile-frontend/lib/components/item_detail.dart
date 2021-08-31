@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:clone_zay_chin/components/cart.dart';
 import 'package:clone_zay_chin/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -23,6 +24,10 @@ class _ItemDetailState extends State<ItemDetail> {
   Widget _buildAddToCart() {
     if (chosenQty == 0) {
       return ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              fixedSize: Size(350, 50),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20))),
           onPressed: () {
             setState(() {
               chosenQty++;
@@ -65,7 +70,12 @@ class _ItemDetailState extends State<ItemDetail> {
         appBar: AppBar(
           title: Text(widget.productName),
           actions: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart)),
+            IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => Cart()));
+                },
+                icon: Icon(Icons.shopping_cart)),
           ],
         ),
         body: Column(

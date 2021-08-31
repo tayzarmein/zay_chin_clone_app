@@ -1,3 +1,4 @@
+import 'package:clone_zay_chin/components/cart.dart';
 import 'package:clone_zay_chin/components/category_view.dart';
 import 'package:clone_zay_chin/components/home_view.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,8 @@ class _HomePageState extends State<HomePage> {
                 icon: Icon(Icons.search)),
             IconButton(
                 onPressed: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => Cart()));
                   print('shopping cart button');
                 },
                 icon: Icon(Icons.shopping_cart))
