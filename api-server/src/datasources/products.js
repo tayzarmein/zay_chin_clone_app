@@ -6,15 +6,15 @@ class Products extends MongoDataSource {
         //data fetching
         const products = await this.collection.find().toArray();
 
-        //transformation
-        // const newProducts = products.map((p) => {
-        //     p.id = p._id
-        //     delete p._id;
-        //     return p;
-        // })
+        transformation
+        const newProducts = products.map((p) => {
+            p.id = p._id
+            delete p._id;
+            return p;
+        })
 
         // console.log("products=", newProducts);
-        return products;
+        return newProducts;
         
     }
     async getCategoryNames() {
@@ -24,8 +24,14 @@ class Products extends MongoDataSource {
     }
     async findProductsByCategory(category) {
         const products = await this.collection.find({category: category.name}).toArray();
-        console.log("productsxxxx=", products);
-        return products;
+        // console.log("productsxxxx=", products);
+        const newProducts = products.map((p) => {
+            p.id = p._id
+            delete p._id;
+            return p;
+        })
+
+        return newProducts;
     }
 }
 

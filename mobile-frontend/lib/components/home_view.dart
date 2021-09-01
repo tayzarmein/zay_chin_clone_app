@@ -13,7 +13,7 @@ class HomeView extends StatelessWidget {
         categories {
           name
           products {
-            _id
+            id
             name
             description
             priceUnit
@@ -38,7 +38,8 @@ class HomeView extends StatelessWidget {
 
           //Show actual data when success
           if (queryResult.source != null) {
-            // print(result.data?["categories"]);
+            // print("queryResult.data");
+            // print(queryResult.data?["categories"]);
 
             List resultList = queryResult.data?["categories"];
 
