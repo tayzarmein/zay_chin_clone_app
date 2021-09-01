@@ -7,7 +7,7 @@ async function seedDb() {
   //purge previous data
   await db.collection("products").deleteMany({});
 
-  db.collection("products").insertMany(products);
+  await db.collection("products").insertMany(products);
 }
 
 seedDb()
