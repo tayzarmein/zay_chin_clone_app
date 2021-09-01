@@ -22,6 +22,9 @@ class Product {
       _$ProductFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductToJson(this);
+
+  @override
+  bool operator ==(Object other) => other is Product && other.id == id;
 }
 
 String jsonString = """{

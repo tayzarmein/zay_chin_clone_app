@@ -26,6 +26,26 @@ class CartModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  List<CartItem> getCartItems() {
+    List<CartItem> cartItems = [];
+
+    //Search through cartItems for product.
+    //If the product is found, increase it's count.
+    //If not found, add new cartItem;
+    products.forEach((product) {
+      int foundIndex =
+          cartItems.indexWhere((cartItem) => cartItem.product == product);
+
+      if (foundIndex == -1) {
+        cartItems.add(CartItem(product: product, count: 1));
+      } else {
+        cartItems[foundIndex].count++;
+      }
+    });
+
+    return cartItems;
+  }
+
   int selectedProductCountInCart(Product product) {
     //Check if the selected product is already in cart.
     //Return count of selected product.
@@ -33,4 +53,10 @@ class CartModel extends ChangeNotifier {
         products.where((eachProduct) => eachProduct.id == product.id);
     return foundProducts.length;
   }
+}
+
+class CartItem {
+  CartItem({required this.product, this.count = 0});
+  Product product;
+  int count;
 }
