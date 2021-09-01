@@ -22,9 +22,8 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
 
     products.forEach((product) {
       allProducts.add(Item(
-          productName: product.name,
-          productPrice: product.price,
-          productImage: product.image));
+        product: product,
+      ));
     });
 
     return Scaffold(

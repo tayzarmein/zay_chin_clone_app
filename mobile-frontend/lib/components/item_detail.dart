@@ -2,36 +2,26 @@ import 'dart:ui';
 
 import 'package:clone_zay_chin/components/cart.dart';
 import 'package:clone_zay_chin/constants.dart';
+import 'package:clone_zay_chin/data_models/cart.dart';
+import 'package:clone_zay_chin/data_models/product.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class ItemDetail extends StatefulWidget {
-  final String productName;
-  final int productPrice;
-  final String productImage;
+class ItemDetail extends StatelessWidget {
+  const ItemDetail({Key? key, required this.product}) : super(key: key);
 
-  ItemDetail(
-      {required this.productName,
-      required this.productImage,
-      required this.productPrice});
+  final Product product;
 
-  @override
-  _ItemDetailState createState() => _ItemDetailState();
-}
-
-class _ItemDetailState extends State<ItemDetail> {
-  int chosenQty = 0;
-
-  Widget _buildAddToCart() {
-    if (chosenQty == 0) {
+  Widget _buildAddToCart(CartModel cartModel) {
+    int countInCart = cartModel.selectedProductCountInCart(product);
+    if (countInCart == 0) {
       return ElevatedButton(
           style: ElevatedButton.styleFrom(
               fixedSize: Size(350, 50),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20))),
           onPressed: () {
-            setState(() {
-              chosenQty++;
-            });
+            cartModel.addProduct(product);
           },
           child: Text('Add to cart'));
     } else {
@@ -42,19 +32,15 @@ class _ItemDetailState extends State<ItemDetail> {
             children: [
               IconButton(
                 onPressed: () {
-                  setState(() {
-                    chosenQty--;
-                  });
+                  cartModel.removeProduct(product);
                 },
-                icon: Icon(chosenQty == 1 ? Icons.delete : Icons.remove),
+                icon: Icon(countInCart == 1 ? Icons.delete : Icons.remove),
                 iconSize: 15,
               ),
-              Text('$chosenQty'),
+              Text('$countInCart'),
               IconButton(
                 onPressed: () {
-                  setState(() {
-                    chosenQty++;
-                  });
+                  cartModel.addProduct(product);
                 },
                 icon: Icon(Icons.add),
                 iconSize: 15,
@@ -66,85 +52,87 @@ class _ItemDetailState extends State<ItemDetail> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.productName),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => Cart()));
-                },
-                icon: Icon(Icons.shopping_cart)),
-          ],
-        ),
-        body: Column(
-          children: [
-            Expanded(
-              flex: 3,
-              child: Container(
-                color: Color(0xFFFFFFFF),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Image.network(
-                        widget.productImage,
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    // Image.network(productImage),
-                    // Image.asset(
-                    //   'images/apple.png',
-                    //   scale: 2.0,
-                    // ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Text(
-                            // 'Apple Fuji (Thai) 1pcs',
-                            widget.productName,
-                            style: kItemDetailTextStyle,
-                          ),
+    return Consumer<CartModel>(builder: (context, cartModel, child) {
+      return Scaffold(
+          appBar: AppBar(
+            title: Text(product.name),
+            actions: [
+              IconButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Cart()));
+                  },
+                  icon: Icon(Icons.shopping_cart)),
+            ],
+          ),
+          body: Column(
+            children: [
+              Expanded(
+                flex: 3,
+                child: Container(
+                  color: Color(0xFFFFFFFF),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Image.network(
+                          product.image,
+                          fit: BoxFit.fill,
                         ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Text(
-                            // '1000 Ks',
-                            widget.productPrice.toString(),
-                            style: kPriceTextStyle,
+                      ),
+                      // Image.network(productImage),
+                      // Image.asset(
+                      //   'images/apple.png',
+                      //   scale: 2.0,
+                      // ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Text(
+                              // 'Apple Fuji (Thai) 1pcs',
+                              product.name,
+                              style: kItemDetailTextStyle,
+                            ),
                           ),
-                        )
-                      ],
-                    )
-                  ],
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Text(
+                              // '1000 Ks',
+                              product.price.toString(),
+                              style: kPriceTextStyle,
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            Expanded(
-              child: Container(
-                color: Color(0xFFFFFFFF),
-                child: Row(
-                  children: [Text('Related Products')],
+              SizedBox(
+                height: 10.0,
+              ),
+              Expanded(
+                child: Container(
+                  color: Color(0xFFFFFFFF),
+                  child: Row(
+                    children: [Text('Related Products')],
+                  ),
                 ),
               ),
-            ),
-            _buildAddToCart(),
-            SizedBox(
-              height: 20,
-            )
-          ],
-        ));
+              _buildAddToCart(cartModel),
+              SizedBox(
+                height: 20,
+              )
+            ],
+          ));
+    });
   }
 }

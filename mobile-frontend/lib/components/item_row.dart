@@ -56,9 +56,8 @@ class ItemRow extends StatelessWidget {
 
                       children: products
                           .map((product) => Item(
-                              productName: product.name,
-                              productPrice: product.price,
-                              productImage: product.image))
+                                product: product,
+                              ))
                           .toList(),
                     ),
                   ),

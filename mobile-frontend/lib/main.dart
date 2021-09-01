@@ -2,6 +2,8 @@ import 'package:clone_zay_chin/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:provider/provider.dart';
+import 'package:clone_zay_chin/data_models/cart.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
@@ -11,10 +13,12 @@ void main() async {
 
   ValueNotifier<GraphQLClient> client = ValueNotifier(GraphQLClient(
       link: httpLink, cache: GraphQLCache(store: InMemoryStore())));
-
-  var app = GraphQLProvider(
-    client: client,
-    child: MyApp(),
+  var app = ChangeNotifierProvider(
+    create: (context) => CartModel(),
+    child: GraphQLProvider(
+      client: client,
+      child: MyApp(),
+    ),
   );
 
   runApp(app);
