@@ -11,7 +11,10 @@ async function seedDb() {
 }
 
 seedDb()
-  .then(() => console.log("seeded"))
+  .then(() => {
+    console.log("db seeded");
+    process.exit(0);
+  })
   .catch((error) => {
     console.log(error);
     throw new Error("Error while seeding");
