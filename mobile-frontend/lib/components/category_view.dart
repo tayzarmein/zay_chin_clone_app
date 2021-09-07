@@ -48,16 +48,23 @@ class CategoriesUI extends StatelessWidget {
     List<Widget> expansionTiles = [];
 
     categories.forEach((category) {
+      List<Widget> listTiles = [];
+
       List<Product> listOfProducts = category.products;
-      List<Widget> listTiles = listOfProducts
-          .map((product) => ListTile(
-                subtitle: Text(product.subcategory),
-                onTap: () {
-                  // new widget
-                  // categories,
-                },
-              ))
-          .toList();
+      Product firstProductOnly = listOfProducts.elementAt(0);
+
+      listTiles.add(ListTile(
+        subtitle: Text(firstProductOnly.subcategory),
+        onTap: () {},
+      ));
+      // .map((product) => ListTile(
+      //       subtitle: Text(product.subcategory),
+      //       onTap: () {
+      //         // new widget
+      //         // categories,
+      //       },
+      //     ))
+      // .toList();
 
       expansionTiles
           .add(ExpansionTile(title: Text(category.name), children: listTiles));
