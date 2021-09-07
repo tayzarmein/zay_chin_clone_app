@@ -10,21 +10,21 @@ class CategoryView extends StatelessWidget {
   Widget build(BuildContext context) {
     var query = """
       query Query {
-      categories {
-        name
-        products {
-          _id
+        categories {
           name
-          description
-          priceUnit
-          price
-          image
-          category
-          subcategory
+          products {
+            id
+            name
+            description
+            priceUnit
+            price
+            image
+            category
+            subcategory
+          }
         }
       }
-    }
-  """;
+    """;
 
     return Query(
         options: QueryOptions(document: gql(query)),
