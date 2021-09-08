@@ -1,3 +1,4 @@
+import 'package:clone_zay_chin/components/category_of_item.dart';
 import 'package:clone_zay_chin/data_models/category.dart';
 import 'package:clone_zay_chin/data_models/product.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +56,14 @@ class CategoriesUI extends StatelessWidget {
 
       listTiles.add(ListTile(
         subtitle: Text(firstProductOnly.subcategory),
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => CategoryOfItem(
+                        productLists: listOfProducts,
+                      )));
+        },
       ));
       // .map((product) => ListTile(
       //       subtitle: Text(product.subcategory),

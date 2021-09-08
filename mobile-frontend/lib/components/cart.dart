@@ -15,7 +15,7 @@ class Cart extends StatelessWidget {
                   image: NetworkImage(cartItem.product.image),
                 ),
                 title: Text(cartItem.product.name),
-                subtitle: Text(cartItem.product.price.toString()),
+                subtitle: Text(cartItem.product.price.toString() + ' Ks'),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -76,7 +76,7 @@ class Cart extends StatelessWidget {
                       thickness: 1,
                       height: 1,
                     ),
-                    Text(cartModel.totalPrice.toString()),
+                    Text(cartModel.totalPrice.toString() + ' Ks'),
                     ElevatedButton(
                       onPressed: () {},
                       child: Text('Continue to checkout'),
