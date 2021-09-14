@@ -1,5 +1,6 @@
 import 'package:clone_zay_chin/components/home_view.dart';
 import 'package:clone_zay_chin/data_models/cart.dart';
+import 'package:clone_zay_chin/pages/checkout_page.dart';
 import 'package:clone_zay_chin/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -66,7 +67,12 @@ class Cart extends StatelessWidget {
                   ),
                   Text(cartModel.totalPrice.toString() + ' Ks'),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CheckOutPage()));
+                    },
                     child: Text('Continue to checkout'),
                     style: ElevatedButton.styleFrom(
                         fixedSize: Size(350, 50),
