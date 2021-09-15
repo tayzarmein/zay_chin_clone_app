@@ -12,7 +12,13 @@ const resolvers = {
                 }
             })
             return categoriesObjects;
-        }  
+        },
+        users: (parent, args, context, info) => {
+            // console.log(context.dataSources.products.getAllUsers())
+            const aa = context.dataSources.users.getAllUsers();
+            // console.log(aa)
+            return aa;
+        }
     },
     Category: {
         products: async (parent, args, context, info) => {
