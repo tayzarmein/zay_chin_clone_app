@@ -6,7 +6,7 @@ class Products extends MongoDataSource {
         //data fetching
         const products = await this.collection.find().toArray();
 
-        transformation
+        // transformation
         const newProducts = products.map((p) => {
             p.id = p._id
             delete p._id;
