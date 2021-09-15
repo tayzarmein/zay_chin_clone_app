@@ -8,6 +8,17 @@ const typeDefs = gql`
     users: [User]
   }
 
+  type Mutation {
+    addUser(name: String!, phNumber: String!) : AddUserResponse!
+  }
+
+  type AddUserResponse {
+    code: Int!
+    success: Boolean!
+    message: String!
+    user: User!
+  }
+
   type Product {
       id: ID!
       name: String!

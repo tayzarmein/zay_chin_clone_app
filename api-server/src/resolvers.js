@@ -27,6 +27,21 @@ const resolvers = {
             return products;
         }
     },
+    Mutation: {
+        addUser: async (parent, args, context, info) => {
+            await context.dataSources.users.addSingleUser(args);
+            return {
+                code: 200,
+                success: true,
+                message: "Successfully user added",
+                user: {
+                    name: args.name,
+                    phNumber: args.phNumber 
+                }
+            }
+            
+        }
+    }
 }
 
 module.exports = resolvers
