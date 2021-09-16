@@ -33,7 +33,7 @@ const resolvers = {
             return {
                 code: 200,
                 success: true,
-                message: "Successfully user added",
+                message: "User Successfully added",
                 user: {
                     name: args.name,
                     phNumber: args.phNumber 
