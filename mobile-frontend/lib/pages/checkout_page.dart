@@ -2,19 +2,14 @@ import 'package:clone_zay_chin/pages/order_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-class CheckOutPage extends StatefulWidget {
+class CheckOutPage extends StatelessWidget {
   const CheckOutPage({Key? key}) : super(key: key);
 
   @override
-  _CheckOutPageState createState() => _CheckOutPageState();
-}
-
-class _CheckOutPageState extends State<CheckOutPage> {
-  final _nameController = TextEditingController();
-  final _phNumberController = TextEditingController();
-
-  @override
   Widget build(BuildContext context) {
+    final _nameController = TextEditingController();
+    final _phNumberController = TextEditingController();
+
     String addUser = """
       mutation Mutation(\$addUserName: String!, \$addUserPhNumber: String!) {
         addUser(name: \$addUserName, phNumber: \$addUserPhNumber) {
