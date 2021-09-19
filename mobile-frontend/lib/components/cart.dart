@@ -132,7 +132,7 @@ class Cart extends StatelessWidget {
                 .map((cartItem) => _buildItemCart(cartItem))
                 .toList(),
           ),
-          bottomSheet: cartModel.selectedProductOrNot()
+          bottomNavigationBar: cartModel.selectedProductOrNot()
               ? _buildEmptyItemCart(context)
               : _buildBottomSheetRow(cartModel));
     });
