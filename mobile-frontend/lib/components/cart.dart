@@ -42,7 +42,7 @@ class Cart extends StatelessWidget {
           children: [
             Expanded(
                 child: Container(
-              height: 200,
+              height: 150,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
