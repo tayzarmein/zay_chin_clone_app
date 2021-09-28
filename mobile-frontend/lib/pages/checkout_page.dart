@@ -1,6 +1,8 @@
+import 'package:clone_zay_chin/components/session_data.dart';
 import 'package:clone_zay_chin/pages/order_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:flutter_session/flutter_session.dart';
 
 class CheckOutPage extends StatelessWidget {
   const CheckOutPage({Key? key}) : super(key: key);
@@ -23,6 +25,10 @@ class CheckOutPage extends StatelessWidget {
         }
       }
     """;
+
+    Future<void> saveSession(SessionData sessionData) async {
+      await FlutterSession().set('sessionData', sessionData);
+    }
 
     return Scaffold(
       appBar: AppBar(),
@@ -88,7 +94,13 @@ class CheckOutPage extends StatelessWidget {
                               'addUserPhNumber': _phNumberController.text
                             },
                           ),
-                      child: Text('Continue'),
+                      child: FutureBuilder(
+                        future: saveSession(SessionData(
+                            _nameController.text, _phNumberController.text)),
+                        builder: (context, snapshot) {
+                          return Text('Continue');
+                        },
+                      ),
                       style: ElevatedButton.styleFrom(
                           fixedSize: Size(350, 50),
                           shape: RoundedRectangleBorder(
@@ -99,21 +111,6 @@ class CheckOutPage extends StatelessWidget {
           );
         },
       ),
-      // bottomSheet: Row(
-      //   mainAxisAlignment: MainAxisAlignment.center,
-      //   children: [
-      //     Padding(
-      //       padding: const EdgeInsets.all(10.0),
-      //       child: ElevatedButton(
-      //           onPressed: () {},
-      //           child: Text('Continue'),
-      //           style: ElevatedButton.styleFrom(
-      //               fixedSize: Size(350, 50),
-      //               shape: RoundedRectangleBorder(
-      //                   borderRadius: BorderRadius.circular(20)))),
-      //     )
-      //   ],
-      // ),
     );
   }
 }
