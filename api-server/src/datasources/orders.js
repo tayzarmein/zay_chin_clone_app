@@ -26,8 +26,8 @@ class Orders extends MongoDataSource {
         }
     }
     async addInputOrder (inputOrder) {
-        const dummy = await this.collection.insertOne(inputOrder.order);
-        return dummy
+        const addOrder = await this.collection.insertOne(inputOrder.order);
+        return addOrder;
     }
 }
 
