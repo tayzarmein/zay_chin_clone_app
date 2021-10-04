@@ -6,6 +6,7 @@ const Products = require("./datasources/products");
 
 const {getDb} = require("./database");
 const Users = require("./datasources/users");
+const Orders = require("./datasources/orders");
 
 getDb().then((db) => {
   const server = new ApolloServer({
@@ -13,7 +14,8 @@ getDb().then((db) => {
     resolvers,
     dataSources: () => ({
       products: new Products(db.collection('products')),
-      users: new Users(db.collection('users'))
+      users: new Users(db.collection('users')),
+      orders: new Orders(db.collection('orders'))
     })
   });
 

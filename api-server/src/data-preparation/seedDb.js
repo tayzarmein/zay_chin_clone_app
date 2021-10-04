@@ -1,6 +1,7 @@
 const { getDb } = require("../database");
 const products = require("./products");
 const users = require("./users")
+const orders = require("./orders");
 
 async function seedDb() { 
   const db = await getDb();
@@ -10,10 +11,14 @@ async function seedDb() {
 
   await db.collection("users").deleteMany({});
 
+  await db.collection("orders").deleteMany({});
+
   //add new data
   await db.collection("products").insertMany(products);
 
   await db.collection("users").insertMany(users);
+
+  await db.collection("orders").insertMany(orders);
 }
 
 seedDb()
