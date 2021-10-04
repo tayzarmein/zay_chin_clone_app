@@ -2,8 +2,8 @@ const {MongoDataSource} = require('apollo-datasource-mongodb')
 
 class Users extends MongoDataSource {
     
-    getAllUsers() {
-        const users = this.collection.find().toArray();
+    async getAllUsers() {
+        const users = await this.collection.find().toArray();
         // console.log(users)
         return users;
     };

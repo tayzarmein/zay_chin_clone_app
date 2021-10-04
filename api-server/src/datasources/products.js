@@ -19,7 +19,6 @@ class Products extends MongoDataSource {
     }
     async getCategoryNames() {
         const categories = await this.collection.distinct('category');
-
         return categories;
     }
     async findProductsByCategory(category) {
@@ -30,7 +29,6 @@ class Products extends MongoDataSource {
             delete p._id;
             return p;
         })
-
         return newProducts;
     }
 }

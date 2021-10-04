@@ -20,8 +20,6 @@ const chickenDrumstick = {
   priceUnit: "EA",
 };
 
-
-
 const order1 = {
     address: "No.1, 30-Qtr",
     township: "North Dagon",
@@ -56,6 +54,5 @@ const order2 = {
         phNumber: "09123456789"
     }
 }
-
 
 module.exports = [order1, order2]
