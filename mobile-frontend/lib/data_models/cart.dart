@@ -26,6 +26,14 @@ class CartModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool selectedProductOrNot() {
+    if (products.isEmpty) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   List<CartItem> getCartItems() {
     List<CartItem> cartItems = [];
 

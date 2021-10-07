@@ -1,3 +1,4 @@
+import 'package:clone_zay_chin/components/category_of_item.dart';
 import 'package:clone_zay_chin/data_models/category.dart';
 import 'package:clone_zay_chin/data_models/product.dart';
 import 'package:flutter/material.dart';
@@ -10,21 +11,21 @@ class CategoryView extends StatelessWidget {
   Widget build(BuildContext context) {
     var query = """
       query Query {
-      categories {
-        name
-        products {
-          _id
+        categories {
           name
-          description
-          priceUnit
-          price
-          image
-          category
-          subcategory
+          products {
+            id
+            name
+            description
+            priceUnit
+            price
+            image
+            category
+            subcategory
+          }
         }
       }
-    }
-  """;
+    """;
 
     return Query(
         options: QueryOptions(document: gql(query)),
@@ -48,16 +49,30 @@ class CategoriesUI extends StatelessWidget {
     List<Widget> expansionTiles = [];
 
     categories.forEach((category) {
+      List<Widget> listTiles = [];
+
       List<Product> listOfProducts = category.products;
-      List<Widget> listTiles = listOfProducts
-          .map((product) => ListTile(
-                subtitle: Text(product.subcategory),
-                onTap: () {
-                  // new widget
-                  // categories,
-                },
-              ))
-          .toList();
+      Product firstProductOnly = listOfProducts.elementAt(0);
+
+      listTiles.add(ListTile(
+        subtitle: Text(firstProductOnly.subcategory),
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => CategoryOfItem(
+                        productLists: listOfProducts,
+                      )));
+        },
+      ));
+      // .map((product) => ListTile(
+      //       subtitle: Text(product.subcategory),
+      //       onTap: () {
+      //         // new widget
+      //         // categories,
+      //       },
+      //     ))
+      // .toList();
 
       expansionTiles
           .add(ExpansionTile(title: Text(category.name), children: listTiles));

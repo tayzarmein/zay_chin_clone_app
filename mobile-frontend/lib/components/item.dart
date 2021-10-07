@@ -26,28 +26,26 @@ class Item extends StatelessWidget {
             style: kAddToCartTextStyle,
           ));
     } else {
-      return Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                onPressed: () {
-                  cartModel.removeProduct(product);
-                },
-                icon: Icon(chosenQty == 1 ? Icons.delete : Icons.remove),
-                iconSize: 15,
-              ),
-              Text('$chosenQty'),
-              IconButton(
-                onPressed: () {
-                  cartModel.addProduct(product);
-                },
-                icon: Icon(Icons.add),
-                iconSize: 15,
-              )
-            ],
-          ));
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          IconButton(
+            onPressed: () {
+              cartModel.removeProduct(product);
+            },
+            icon: Icon(chosenQty == 1 ? Icons.delete : Icons.remove),
+            iconSize: 15,
+          ),
+          Text('$chosenQty'),
+          IconButton(
+            onPressed: () {
+              cartModel.addProduct(product);
+            },
+            icon: Icon(Icons.add),
+            iconSize: 15,
+          )
+        ],
+      );
     }
   }
 
@@ -56,6 +54,7 @@ class Item extends StatelessWidget {
     return Consumer<CartModel>(builder: (context, cartModel, child) {
       return Container(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           // textBaseline: TextBaseline.alphabetic,
 
           children: [
@@ -88,7 +87,7 @@ class Item extends StatelessWidget {
               height: 10.0,
             ),
             Text(
-              product.price.toString(),
+              product.price.toString() + ' Ks',
               style: kPriceTextStyle,
             ),
             Padding(
